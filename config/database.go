@@ -35,6 +35,5 @@ func InitDB() {
 	if err := DB.AutoMigrate(&models.User{}, &models.Tutor{}, &models.Course{}); err != nil {
 		log.Fatal("Database migration failed!")
 	}
-
 	fmt.Println("✅Database successfully Connected!")
 }

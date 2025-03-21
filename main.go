@@ -2,6 +2,7 @@ package main
 
 import (
 	"edugo/config"
+	authentication "edugo/controllers/Authentication"
 	"log"
 
 	"github.com/gofiber/fiber/v2"
@@ -10,6 +11,9 @@ import (
 func main() {
 	app := fiber.New()
 	config.InitDB()
+
+	//Authentication
+	app.Post("/signup", authentication.SignupUser)
 
 	log.Fatal(app.Listen(":3000"))
 }

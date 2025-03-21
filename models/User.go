@@ -13,7 +13,7 @@ type User struct {
 	Email    string `gorm:"unique;not null" validate:"required,email"`
 	Phone    string `gorm:"unique;not null" validate:"required,len=10,numeric"`
 	Password string `gorm:"not null" validate:"required,min=6"`
-	Role     string `gorm:"not null" validate:"required"`
+	Role     string `gorm:"not null"`
 }
 
 func (u *User) Validate() error {
