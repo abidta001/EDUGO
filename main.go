@@ -14,6 +14,7 @@ func main() {
 
 	//Authentication
 	app.Post("/signup", authentication.SignupUser)
+	app.Post("/login", authentication.LoginUser)
 
 	log.Fatal(app.Listen(":3000"))
 }
