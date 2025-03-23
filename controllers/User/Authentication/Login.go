@@ -20,6 +20,9 @@ func LoginUser(c *fiber.Ctx) error {
 	if err := config.DB.Where("email=?", input.Email).First(&user).Error; err != nil {
 		return c.Status(fiber.StatusNotFound).JSON(fiber.Map{"error": "User not found"})
 	}
+	if !user.Verified {
+		return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{"error": "User not verified"})
+	}
 	if !CheckPassword(input.Password, user.Password) {
 		return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{"error": "Invalid Password"})
 	}

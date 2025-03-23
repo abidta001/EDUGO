@@ -14,6 +14,7 @@ type User struct {
 	Phone    string `gorm:"unique;not null" validate:"required,len=10,numeric"`
 	Password string `gorm:"not null" validate:"required,min=6"`
 	Role     string `gorm:"not null"`
+	Verified bool   `gorm:"default:false"`
 }
 
 func (u *User) Validate() error {
