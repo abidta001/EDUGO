@@ -20,6 +20,7 @@ func main() {
 
 	//Profile
 	app.Get("/profile/view", middleware.JWTMiddleware, profile.GetUserProfile)
+	app.Put("profile/edit", middleware.JWTMiddleware, profile.EditUserProfile)
 
 	log.Fatal(app.Listen(":3000"))
 }
