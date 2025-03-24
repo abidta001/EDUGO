@@ -32,7 +32,7 @@ func InitDB() {
 	if err != nil {
 		log.Fatal("Failed to connect database!")
 	}
-	if err := DB.AutoMigrate(&models.User{}, &models.Tutor{}, &models.Course{}); err != nil {
+	if err := DB.AutoMigrate(&models.User{}, &models.Tutor{}, &models.Course{}, &models.Category{}); err != nil {
 		log.Fatal("Database migration failed!")
 	}
 	fmt.Println("✅Database successfully Connected!")
