@@ -17,6 +17,7 @@ func main() {
 	//Authentication
 	app.Post("/signup", authentication.SignupUser)
 	app.Post("/login", authentication.LoginUser)
+	app.Post("/verify", authentication.VerifyOTP)
 
 	//Profile
 	app.Get("/profile/view", middleware.JWTMiddleware, profile.GetUserProfile)
