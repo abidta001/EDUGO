@@ -3,6 +3,7 @@ package authentication
 import (
 	"edugo/config"
 	"edugo/models"
+	"fmt"
 
 	"github.com/gofiber/fiber/v2"
 )
@@ -23,9 +24,12 @@ func SignupUser(c *fiber.Ctx) error {
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": "Failed to store OTP"})
 	}
 
-	if err := SendOTP(input.Email, otp); err != nil {
-		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": "Failed to send OTP"})
-	}
+	go func() {
+		err := SendOTP(input.Email, otp)
+		if err != nil {
+			fmt.Println("Failed to send OTP", err)
+		}
+	}()
 
 	password, err := HashPassword(input.Password)
 	if err != nil {
