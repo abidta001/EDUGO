@@ -39,5 +39,6 @@ func LoginUser(c *fiber.Ctx) error {
 	return c.Status(fiber.StatusOK).JSON(fiber.Map{
 		"message": "Login successful",
 		"token":   token,
+		"role":    user.Role,
 	})
 }

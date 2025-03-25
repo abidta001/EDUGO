@@ -13,4 +13,5 @@ type Tutor struct {
 	Availability   string   `gorm:"not null"`
 	Rating         float32  `gorm:"default:0"`
 	Courses        []Course `gorm:"foreignKey:TutorID"`
+	Verified       bool     `gorm:"default:false"`
 }
