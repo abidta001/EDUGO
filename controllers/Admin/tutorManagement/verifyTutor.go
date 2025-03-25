@@ -1,4 +1,4 @@
-package tutorManagement
+package tutormanagement
 
 import (
 	"edugo/config"

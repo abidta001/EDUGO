@@ -2,6 +2,7 @@ package main
 
 import (
 	"edugo/config"
+	admin "edugo/controllers/Admin/courseManagement"
 	tutormanagement "edugo/controllers/Admin/tutorManagement"
 	tutor "edugo/controllers/Tutor"
 	authentication "edugo/controllers/User/Authentication"
@@ -28,14 +29,17 @@ func main() {
 
 	//Course
 	app.Get("/category", courses.ViewCategory)
-	app.Post("/category", middleware.JWTMiddleware, middleware.AdminMiddleware, courses.CreateCategory) //Give this to admin
+	//Give this to admin
 
 	//Tutor
 	app.Post("/request", middleware.JWTMiddleware, tutor.RequestTutor)
-	app.Get("/request", middleware.JWTMiddleware, middleware.AdminMiddleware, tutormanagement.ViewRequestTutor) //admin
+	//admin
 
 	//Admin
+	app.Get("/request", middleware.JWTMiddleware, middleware.AdminMiddleware, tutormanagement.ViewRequestTutor)
 	app.Put("/verifytutor/:id", middleware.JWTMiddleware, middleware.AdminMiddleware, tutormanagement.VerifyTutor)
+	app.Post("/category", middleware.JWTMiddleware, middleware.AdminMiddleware, admin.CreateCategory)
+	app.Get("/view-category", middleware.JWTMiddleware, middleware.AdminMiddleware, admin.ViewCategoryAdmin)
 
 	log.Fatal(app.Listen(":3000"))
 }
