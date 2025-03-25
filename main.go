@@ -34,5 +34,8 @@ func main() {
 	app.Post("/request", middleware.JWTMiddleware, tutor.RequestTutor)
 	app.Get("/request", middleware.JWTMiddleware, middleware.AdminMiddleware, tutormanagement.ViewRequestTutor) //admin
 
+	//Admin
+	app.Put("/verifytutor/:id", middleware.JWTMiddleware, middleware.AdminMiddleware, tutormanagement.VerifyTutor)
+
 	log.Fatal(app.Listen(":3000"))
 }
