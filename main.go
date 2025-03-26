@@ -5,6 +5,7 @@ import (
 	admin "edugo/controllers/Admin/courseManagement"
 	tutormanagement "edugo/controllers/Admin/tutorManagement"
 	tutor "edugo/controllers/Tutor"
+	profiletutor "edugo/controllers/Tutor/ProfileTutor"
 	authentication "edugo/controllers/User/Authentication"
 	courses "edugo/controllers/User/Courses"
 	profile "edugo/controllers/User/Profile"
@@ -22,6 +23,7 @@ func main() {
 	app.Post("/signup", authentication.SignupUser)
 	app.Post("/login", authentication.LoginUser)
 	app.Post("/verify", authentication.VerifyOTP)
+	app.Post("/resend", authentication.ResendOTP)
 
 	//Profile
 	app.Get("/profile/view", middleware.JWTMiddleware, profile.GetUserProfile)
@@ -33,6 +35,7 @@ func main() {
 
 	//Tutor
 	app.Post("/request", middleware.JWTMiddleware, tutor.RequestTutor)
+	app.Get("/viewtutor", middleware.JWTMiddleware, profiletutor.ViewTutorProfile)
 	//admin
 
 	//Admin
