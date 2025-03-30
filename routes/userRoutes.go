@@ -23,6 +23,8 @@ func ProfileRoutes(app *fiber.App) {
 
 	profileGroup.Get("/view", profile.GetUserProfile)
 	profileGroup.Put("/edit", profile.EditUserProfile)
+	profileGroup.Post("/reset-password", profile.ResetPasswordOTP)
+	profileGroup.Post("/change-password", profile.ChangePassword)
 }
 
 func NormalRoutes(app *fiber.App) {
