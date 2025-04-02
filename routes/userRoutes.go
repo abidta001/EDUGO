@@ -29,5 +29,6 @@ func ProfileRoutes(app *fiber.App) {
 
 func NormalRoutes(app *fiber.App) {
 	app.Get("/category", courses.ViewCategory)
-	//view course
+	app.Get("/courses", courses.ViewCourses)
+
 }
